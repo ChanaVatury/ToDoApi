@@ -43,20 +43,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-// הגדרת Swagger Middleware
-if (app.Environment.IsDevelopment())
-{
+app.MapGet("/",() => "hello!!");
+// // הגדרת Swagger Middleware
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDo API v1");
         c.RoutePrefix = string.Empty; // Swagger ייפתח בכתובת הבסיס
     });
-}
+// }
 
 // app.UseAuthentication();
-// app.UseAuthorization();
+// app.UseAuthorization();//////
 app.UseCors("http://localhost:3000/");
 
 // [Authorize]
